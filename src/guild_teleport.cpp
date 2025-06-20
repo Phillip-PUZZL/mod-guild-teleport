@@ -16,7 +16,7 @@ public:
 
     class GuildTeleportSpell_SpellScript : public SpellScript
     {
-        PrepareSpellScript(GuildTeleportSpell_Script);
+        PrepareSpellScript(GuildTeleport_SpellScript);
 
         void HandleTeleport(SpellEffIndex /*effIndex*/)
         {
@@ -53,13 +53,13 @@ public:
 
         void Register() override
         {
-            OnEffectHitTarget += SpellEffectFn(GuildTeleportSpell_Script::HandleTeleport, EFFECT_0, SPELL_EFFECT_TELEPORT_UNITS);
+            OnEffectHitTarget += SpellEffectFn(GuildTeleport_SpellScript::HandleTeleport, EFFECT_0, SPELL_EFFECT_TELEPORT_UNITS);
         }
     };
 
     SpellScript* AddSpellGuildTeleportScripts() const override
     {
-        return new GuildTeleportSpell_Script();
+        return new GuildTeleport_SpellScript();
     }
 };
 
