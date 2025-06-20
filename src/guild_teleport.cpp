@@ -29,8 +29,8 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 }
 
                 uint32 guildId = guild->GetId();
-                QueryResult result = WorldDatabase.Query(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = %u", guildId);
+                QueryResult result = WorldDatabase.Query(fmt::format(
+                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guildId));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Your guild has no teleport location set.");
@@ -76,7 +76,7 @@ class GuildTeleportNPC : public CreatureScript {
                     0, GOSSIP_ICON_INTERACT_1, 0, 2, 0);
             }
 
-            player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
+            player->PlayerTalkClass->SendGossipMenu(90001, creature->GetGUID());
             return true;
         }
 
@@ -90,9 +90,8 @@ class GuildTeleportNPC : public CreatureScript {
             }
 
             if (action == 1) {
-                QueryResult result = WorldDatabase.Query(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = %u",
-                    guild->GetId());
+                QueryResult result = WorldDatabase.Query(fmt::format(
+                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guildId));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Teleport location not configured for your guild.");
@@ -120,9 +119,9 @@ class GuildTeleportNPC : public CreatureScript {
                 float o = creature->GetOrientation();
                 uint32 mapId = creature->GetMapId();
 
-                WorldDatabase.Execute(
-                    "REPLACE INTO guild_teleport_locations (guild_id, map, x, y, z, o) VALUES (%u, %u, %f, %f, %f, %f)",
-                    guild->GetId(), mapId, x, y, z, o);
+                WorldDatabase.Execute(fmt::format(
+                    "REPLACE INTO guild_teleport_locations (guild_id, map, x, y, z, o) VALUES ({}, {}, {}, {}, {}, {})",
+                    guild->GetId(), mapId, x, y, z, o));
 
                 ChatHandler(player->GetSession()).SendSysMessage("Guild teleport location has been set to this NPC's location.");
             }
@@ -134,4 +133,5 @@ class GuildTeleportNPC : public CreatureScript {
 void Addmod_guild_teleportScripts() {
     new GuildTeleportNPC();
     new GuildTeleportSpell();
+    printf(">> Guild Teleport Module Loaded!\n");
 }

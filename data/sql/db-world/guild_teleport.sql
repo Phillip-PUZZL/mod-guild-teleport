@@ -1,12 +1,17 @@
-
-CREATE TABLE `guild_teleport_locations` (
-    `guild_id` INT PRIMARY KEY,
-    `map` INT NOT NULL,
-    `x` FLOAT NOT NULL,
-    `y` FLOAT NOT NULL,
-    `z` FLOAT NOT NULL,
-    `o` FLOAT DEFAULT 0
+CREATE TABLE IF NOT EXISTS guild_teleport_locations (
+                                                        guild_id INT PRIMARY KEY,
+                                                        map INT NOT NULL,
+                                                        x FLOAT NOT NULL,
+                                                        y FLOAT NOT NULL,
+                                                        z FLOAT NOT NULL,
+                                                        o FLOAT DEFAULT 0
 );
+
+REPLACE INTO npc_text (ID, text0_0, em0_0) VALUES
+  (90001, 'Would you like to teleport to your Guild?', 0);
+
+REPLACE INTO gossip_menu (MenuID, TextID) VALUES
+  (90001, 90001);
 
 REPLACE INTO creature_template (
   entry, difficulty_entry_1, difficulty_entry_2, difficulty_entry_3,
@@ -25,8 +30,8 @@ REPLACE INTO creature_template (
   flags_extra, ScriptName, VerifiedBuild
 ) VALUES (
   70010, 0, 0, 0,
-  0, 0, 'Guild Teleport NPC', '', NULL, 0,
-  60, 60, 0, 35, 64,
+  0, 0, 'Guild Teleport NPC', '', NULL, 90001,
+  60, 60, 0, 35, 1,
   1.0, 2.0, 1.0, 1.0,
   18, 1.0, 0, 0, 1.0,
   2000, 2000, 0, 0,
@@ -45,10 +50,10 @@ REPLACE INTO creature_template_model
 VALUES
   (70010, 0, 9590, 1.0, 1.0, 0);
 
-REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (70001, 'GuildTeleportSpell');
+REPLACE INTO spell_script_names (spell_id, ScriptName) VALUES (100001, 'GuildTeleportSpell');
 
-REPLACE INTO `spellcasttimes_dbc` (`ID`, `Base`, `PerLevel`, `Minimum`) VALUES (9000, 10000, 0, 10000);
-REPLACE INTO `spellcasttimes` (`ID`, `CastingTime`, `CastingTimePerLevel`, `MinimumCastingTime`) VALUES (9000, 10000, 0, 10000);
+REPLACE INTO spellcasttimes_dbc (ID, Base, PerLevel, Minimum) VALUES (9000, 10000, 0, 10000);
+REPLACE INTO spellcasttimes (ID, CastingTime, CastingTimePerLevel, MinimumCastingTime) VALUES (9000, 10000, 0, 10000);
 
 REPLACE INTO spell (
   ID, Category, Dispel, Mechanic, Attributes, AttributesEx, AttributesEx2, AttributesEx3, AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7, Stances, Unknown1, StancesNot, Unknown2, Targets, TargetCreatureType, RequiresSpellFocus, FacingCasterFlags, CasterAuraState, TargetAuraState, CasterAuraStateNot, TargetAuraStateNot, CasterAuraSpell, TargetAuraSpell, ExcludeCasterAuraSpell, ExcludeTargetAuraSpell, CastingTimeIndex, RecoveryTime, CategoryRecoveryTime, InterruptFlags, AuraInterruptFlags, ChannelInterruptFlags, ProcFlags, ProcChance, ProcCharges, MaximumLevel, BaseLevel, SpellLevel, DurationIndex, PowerType, ManaCost, ManaCostPerLevel, ManaPerSecond, ManaPerSecondPerLevel, RangeIndex, Speed, ModalNextSpell, StackAmount,
@@ -67,21 +72,21 @@ REPLACE INTO spell (
   EffectDamageMultiplier1, EffectDamageMultiplier2, EffectDamageMultiplier3,
   MinimumFactionId, MinimumReputation, RequiredAuraVision, TotemCategory1, TotemCategory2, AreaGroupID, SchoolMask, RuneCostID, SpellMissileID, PowerDisplayId, EffectBonusMultiplier1, EffectBonusMultiplier2, EffectBonusMultiplier3, SpellDescriptionVariableID, SpellDifficultyID
 ) VALUES (
-  70001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
+  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  -1, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  12345, 12345, 0, 0, 0,
+  -1, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  3274, 3274, 2856, 0, 0,
   'Guild Teleport', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 16712190,
   '', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 16712188,
   'Teleports you to the guild hall.', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 16712188,
   '', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-  0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0, 0, 0
+  0, 0, 0, 0, 0, 0, 0, 16712188,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  1, 1, 1,
+  0, 0, 0, 0, 0, 0, 64, 0, 0, 0.0, 0.0, 0.0, 0, 0, 0
 );
 
 REPLACE INTO spell_dbc (
@@ -135,19 +140,19 @@ REPLACE INTO spell_dbc (
   EffectBonusMultiplier_1, EffectBonusMultiplier_2, EffectBonusMultiplier_3,
   SpellDescriptionVariableID, SpellDifficultyID
 ) VALUES (
-  70001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
+  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  -1, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  12345, 12345, 0, 0, 0,
+  -1, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  3274, 3274, 2856, 0, 0,
   'Guild Teleport', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  '', '', '', '', '', '', '', 16712190,
   '', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  '', '', '', '', '', '', '', 16712188,
   'Teleports you to the guild hall.', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
+  '', '', '', '', '', '', '', 16712188,
   '', '', '', '', '', '', '', '', '',
-  0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0,
-  0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0, 0, 0
+  '', '', '', '', '', '', '', 16712188,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+  1, 1, 1,
+  0, 0, 0, 0, 0, 0, 64, 0, 0, 0.0, 0.0, 0.0, 0, 0, 0
 );
