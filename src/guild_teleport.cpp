@@ -70,11 +70,12 @@ class GuildTeleportNPC : public CreatureScript {
             }
 
             player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                GOSSIP_ICON_CHAT, "Teleport to guild base", 0, 1);
+                0, GOSSIP_ICON_CHAT, 0, 1, 0);
+
 
             if (guild->GetLeaderGUID() == player->GetGUID()) {
                 player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                    GOSSIP_ICON_INTERACT_1, "Set this location as the guild base", 0, 2);
+                    0, GOSSIP_ICON_INTERACT_1, 0, 2, 0);
             }
 
 
