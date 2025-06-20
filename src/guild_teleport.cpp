@@ -68,11 +68,11 @@ class GuildTeleportNPC : public CreatureScript {
             }
 
             player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                0, GOSSIP_ICON_CHAT, 0, 1, 0);
+                0, GOSSIP_ICON_CHAT, "Teleport to Guild Hall", 1, false);
 
             if (guild->GetLeaderGUID() == player->GetGUID()) {
-                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                    0, GOSSIP_ICON_INTERACT_1, 0, 2, 0);
+                player->PlayerTalkClass->GetGossipMenu()->AddMenuItem(
+                    0, GOSSIP_ICON_INTERACT_1, "Set Guild Hall location", 2, false);
             }
 
             player->PlayerTalkClass->SendGossipMenu(90001, creature->GetGUID());
@@ -105,8 +105,7 @@ class GuildTeleportNPC : public CreatureScript {
                 float o = fields[4].Get<float>();
 
                 player->TeleportTo(mapId, x, y, z, o);
-            }
-            else if (action == 2) {
+            } else if (action == 2) {
                 if (guild->GetLeaderGUID() != player->GetGUID()) {
                     ChatHandler(player->GetSession()).SendSysMessage("Only the guild leader can set the guild teleport location.");
                     return true;
