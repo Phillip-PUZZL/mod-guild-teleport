@@ -8,10 +8,6 @@ CREATE TABLE `guild_teleport_locations` (
     `o` FLOAT DEFAULT 0
 );
 
-
-REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES (70001, 'GuildTeleportSpell');
-
 INSERT INTO `creature_template` (
     `entry`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `speed_walk`, `speed_run`,
     `scale`, `rank`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`,
@@ -35,6 +31,9 @@ INSERT INTO `creature_template` (
     1.0, 1.0, 0, 0, 0,
     0, 0, 'GuildTeleportNPC', ''
 );
+
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`)
+VALUES (70001, 'GuildTeleportSpell');
 
 INSERT IGNORE INTO `spell_template` (`Id`) VALUES (70001);
 

@@ -1,0 +1,8 @@
+{
+  "name": "mod-guild-teleport",
+  "title": "Guild Teleport Module",
+  "description": "Guild Teleport NPC and Spell with guild leader location setting",
+  "version": "1.0.0",
+  "author": "Phillip Driscoll",
+  "dependencies": []
+}
