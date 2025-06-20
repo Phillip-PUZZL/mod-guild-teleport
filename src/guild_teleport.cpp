@@ -28,9 +28,8 @@ class GuildTeleportSpell : public SpellScriptLoader {
                     return;
                 }
 
-                uint32 guildId = guild->GetId();
                 QueryResult result = WorldDatabase.Query(fmt::format(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guildId));
+                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Your guild has no teleport location set.");
@@ -91,7 +90,7 @@ class GuildTeleportNPC : public CreatureScript {
 
             if (action == 1) {
                 QueryResult result = WorldDatabase.Query(fmt::format(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guildId));
+                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Teleport location not configured for your guild.");
