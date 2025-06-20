@@ -8,6 +8,7 @@
 #include "Chat.h"
 #include "SpellScript.h"
 #include "SpellAuraEffects.h"
+#include <fmt/format.h>
 
 class GuildTeleportSpell : public SpellScriptLoader {
     public:
@@ -28,7 +29,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 }
 
                 uint32 guildId = guild->GetId();
-                QueryResult result = WorldDatabase.PQuery(
+                QueryResult result = WorldDatabase.Query(
                     "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = %u", guildId);
 
                 if (!result) {
@@ -86,7 +87,7 @@ class GuildTeleportNPC : public CreatureScript {
             }
 
             if (action == 1) {
-                QueryResult result = WorldDatabase.PQuery(
+                QueryResult result = WorldDatabase.Query(
                     "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = %u",
                     guild->GetId());
 
@@ -116,7 +117,7 @@ class GuildTeleportNPC : public CreatureScript {
                 float o = creature->GetOrientation();
                 uint32 mapId = creature->GetMapId();
 
-                WorldDatabase.PExecute(
+                WorldDatabase.Execute(
                     "REPLACE INTO guild_teleport_locations (guild_id, map, x, y, z, o) VALUES (%u, %u, %f, %f, %f, %f)",
                     guild->GetId(), mapId, x, y, z, o);
 
