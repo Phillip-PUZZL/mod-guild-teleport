@@ -8,130 +8,42 @@ CREATE TABLE `guild_teleport_locations` (
     `o` FLOAT DEFAULT 0
 );
 
-INSERT INTO acore_world.creature_template (
-    entry,
-    difficulty_entry_1,
-    difficulty_entry_2,
-    difficulty_entry_3,
-    KillCredit1,
-    KillCredit2,
-    name,
-    subname,
-    IconName,
-    gossip_menu_id,
-    minlevel,
-    maxlevel,
-    exp,
-    faction,
-    npcflag,
-    speed_walk,
-    speed_run,
-    speed_swim,
-    speed_flight,
-    detection_range,
-    scale,
-    `rank`,
-    dmgschool,
-    DamageModifier,
-    BaseAttackTime,
-    RangeAttackTime,
-    BaseVariance,
-    RangeVariance,
-    unit_class,
-    unit_flags,
-    unit_flags2,
-    dynamicflags,
-    family,
-    trainer_type,
-    trainer_spell,
-    trainer_class,
-    trainer_race,
-    type,
-    type_flags,
-    lootid,
-    pickpocketloot,
-    skinloot,
-    PetSpellDataId,
-    VehicleId,
-    mingold,
-    maxgold,
-    AIName,
-    MovementType,
-    HoverHeight,
-    HealthModifier,
-    ManaModifier,
-    ArmorModifier,
-    ExperienceModifier,
-    RacialLeader,
-    movementId,
-    RegenHealth,
-    mechanic_immune_mask,
-    spell_school_immune_mask,
-    flags_extra,
-    ScriptName,
-    VerifiedBuild
+INSERT INTO `acore_world`.`creature_template` (
+  'entry', 'difficulty_entry_1', 'difficulty_entry_2', 'difficulty_entry_3',
+  'KillCredit1', 'KillCredit2', 'name', 'subname', 'IconName', 'gossip_menu_id',
+  'minlevel', 'maxlevel', 'exp', 'faction', 'npcflag',
+  'speed_walk', 'speed_run', 'speed_swim', 'speed_flight',
+  'detection_range', 'scale', 'rank', 'dmgschool', 'DamageModifier',
+  'BaseAttackTime', 'RangeAttackTime', 'BaseVariance', 'RangeVariance',
+  'unit_class', 'unit_flags', 'unit_flags2', 'dynamicflags', 'family',
+  'trainer_type', 'trainer_spell', 'trainer_class', 'trainer_race',
+  'type', 'type_flags', 'lootid', 'pickpocketloot', 'skinloot',
+  'PetSpellDataId', 'VehicleId', 'mingold', 'maxgold',
+  'AIName', 'MovementType', 'HoverHeight', 'HealthModifier', 'ManaModifier',
+  'ArmorModifier', 'ExperienceModifier', 'RacialLeader', 'movementId',
+  'RegenHealth', 'mechanic_immune_mask', 'spell_school_immune_mask',
+  'flags_extra', 'ScriptName', 'VerifiedBuild'
 ) VALUES (
-    70010,       -- entry
-    0, 0, 0,     -- difficulty entries
-    0, 0,        -- KillCredit1, KillCredit2
-    'Guild Teleport NPC',  -- name
-    '',          -- subname
-    NULL,        -- IconName
-    0,           -- gossip_menu_id (set as needed)
-    60, 60,      -- minlevel, maxlevel
-    0,           -- exp (XP granted on kill)
-    35,          -- faction (e.g. Neutral)
-    64,          -- npcflag (64 = Gossip)
-    1.0,         -- speed_walk
-    2.0,         -- speed_run
-    1.0,         -- speed_swim
-    1.0,         -- speed_flight
-    18,          -- detection_range
-    1.0,         -- scale (size multiplier)
-    0,           -- rank (0 = normal)
-    0,           -- dmgschool
-    1.0,         -- DamageModifier
-    2000,        -- BaseAttackTime (ms)
-    2000,        -- RangeAttackTime (ms)
-    0, 0,        -- BaseVariance, RangeVariance
-    0,           -- unit_class
-    0,           -- unit_flags
-    0,           -- unit_flags2
-    0,           -- dynamicflags
-    0,           -- family
-    0,           -- trainer_type
-    0,           -- trainer_spell
-    0,           -- trainer_class
-    0,           -- trainer_race
-    7,           -- type (7 = Humanoid)
-    0,           -- type_flags
-    0,           -- lootid
-    0,           -- pickpocketloot
-    0,           -- skinloot
-    0,           -- PetSpellDataId
-    0,           -- VehicleId
-    0, 0,        -- mingold, maxgold
-    '',          -- AIName (default AI)
-    0,           -- MovementType (0 = random)
-    1.0,         -- HoverHeight
-    1.0,         -- HealthModifier
-    1.0,         -- ManaModifier
-    1.0,         -- ArmorModifier
-    0,           -- ExperienceModifier
-    0,           -- RacialLeader
-    0,           -- movementId
-    0,           -- RegenHealth
-    0,           -- mechanic_immune_mask
-    0,           -- spell_school_immune_mask
-    0,           -- flags_extra
-    'GuildTeleportNPC', -- ScriptName
-    1            -- VerifiedBuild
+  70010, 0, 0, 0,
+  0, 0, 'Guild Teleport NPC', '', NULL, 0,
+  60, 60, 0, 35, 64,
+  1.0, 2.0, 1.0, 1.0,
+  18, 1.0, 0, 0, 1.0,
+  2000, 2000, 0, 0,
+  0, 0, 0, 0, 0,
+  0, 0, 0, 0,
+  7, 0, 0, 0, 0,
+  0, 0, 0, 0,
+  '', 0, 1.0, 1.0, 1.0,
+  1.0, 0, 0, 0,
+  0, 0, 0,
+  0, 'GuildTeleportNPC', 1
 );
-
 
 REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (70001, 'GuildTeleportSpell');
 
-INSERT IGNORE INTO `spellcasttimes` (`ID`, `Base`, `PerLevel`, `Minimum`) VALUES (9000, 10000, 0, 10000);
+INSERT IGNORE INTO `spellcasttimes_dbc` (`ID`, `Base`, `PerLevel`, `Minimum`) VALUES (9000, 10000, 0, 10000);
+INSERT IGNORE INTO `spellcasttimes` (`ID`, `CastingTime`, `CastingTimePerLevel`, `MinimumCastingTime`) VALUES (9000, 10000, 0, 10000);
 
 INSERT INTO `spell` (
   `ID`, `Category`, `Dispel`, `Mechanic`, `Attributes`, `AttributesEx`, `AttributesEx2`, `AttributesEx3`,
