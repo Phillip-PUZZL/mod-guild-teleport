@@ -32,13 +32,11 @@ INSERT INTO `creature_template` (
     0, 0, 'GuildTeleportNPC', ''
 );
 
-REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`)
-VALUES (70001, 'GuildTeleportSpell');
+REPLACE INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES (70001, 'GuildTeleportSpell');
 
 INSERT IGNORE INTO `spell_template` (`Id`) VALUES (70001);
 
-INSERT IGNORE INTO `spellcasttimes` (`ID`, `Base`, `PerLevel`, `Minimum`) VALUES
-(9000, 10000, 0, 10000);
+INSERT IGNORE INTO `spellcasttimes` (`ID`, `Base`, `PerLevel`, `Minimum`) VALUES (9000, 10000, 0, 10000);
 
 REPLACE INTO `custom_spell_template` (
     `entry`,

@@ -71,7 +71,6 @@ class GuildTeleportNPC : public CreatureScript {
             player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
                 0, GOSSIP_ICON_CHAT, 0, 1, 0);
 
-
             if (guild->GetLeaderGUID() == player->GetGUID()) {
                 player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
                     0, GOSSIP_ICON_INTERACT_1, 0, 2, 0);
