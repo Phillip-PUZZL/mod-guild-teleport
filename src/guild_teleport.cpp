@@ -131,16 +131,16 @@ class GuildTeleportNPC : public CreatureScript {
 
 class GuildTeleport_CommandScript : public CommandScript {
     public:
-        GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") {}
+        GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") { }
 
-        std::vector<ChatCommand> GetCommands() const override {
-            static std::vector<ChatCommand> commandTable = {
-                { "guildteleport", SEC_PLAYER, false, &HandleGuildTeleportCommand, "" }
+        ChatCommandTable GetCommands() const override {
+            static ChatCommandTable commandTable = {
+                { "guildteleport", HandleGuildTeleportCommand, SEC_PLAYER, Console::No }
             };
             return commandTable;
         }
 
-        static bool HandleGuildTeleportCommand(ChatHandler* handler) {
+        static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string const&) {
             Player* player = handler->GetSession()->GetPlayer();
 
             if (!player)
@@ -151,7 +151,7 @@ class GuildTeleport_CommandScript : public CommandScript {
                 return true;
             }
 
-            player->CastSpell(player, 100001, false);
+            player->CastSpell(player, 100001, false); // show cast bar
             return true;
         }
 };
