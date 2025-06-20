@@ -38,11 +38,12 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 }
 
                 Field* fields = result->Fetch();
-                uint32 map = fields[0].GetUInt32();
-                float x = fields[1].GetFloat();
-                float y = fields[2].GetFloat();
-                float z = fields[3].GetFloat();
-                float o = fields[4].GetFloat();
+                uint32 map = fields[0].Get<uint32>();
+                float x = fields[1].Get<float>();
+                float y = fields[2].Get<float>();
+                float z = fields[3].Get<float>();
+                float o = fields[4].Get<float>();
+
 
                 player->TeleportTo(map, x, y, z, o);
             }
@@ -97,11 +98,12 @@ class GuildTeleportNPC : public CreatureScript {
                 }
 
                 Field* fields = result->Fetch();
-                uint32 mapId = fields[0].GetUInt32();
-                float x = fields[1].GetFloat();
-                float y = fields[2].GetFloat();
-                float z = fields[3].GetFloat();
-                float o = fields[4].GetFloat();
+                uint32 mapId = fields[0].Get<uint32>();
+                float x = fields[1].Get<float>();
+                float y = fields[2].Get<float>();
+                float z = fields[3].Get<float>();
+                float o = fields[4].Get<float>();
+
 
                 player->TeleportTo(mapId, x, y, z, o);
             }
