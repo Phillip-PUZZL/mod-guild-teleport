@@ -135,11 +135,7 @@ class GuildTeleportNPC : public CreatureScript {
         }
 };
 
-void AddGuildTeleportNPCScripts() {
-    new GuildTeleportNPC();
-}
-
 void Addmod_guild_teleportScripts() {
-    AddGuildTeleportNPCScripts();
-    AddSpellGuildTeleportScripts();
+    new GuildTeleportNPC();
+    new GuildTeleportSpell();
 }
