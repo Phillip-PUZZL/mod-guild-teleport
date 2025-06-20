@@ -129,8 +129,36 @@ class GuildTeleportNPC : public CreatureScript {
         }
 };
 
+class GuildTeleport_CommandScript : public CommandScript {
+    public:
+        GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") {}
+
+        std::vector<ChatCommand> GetCommands() const override {
+            static std::vector<ChatCommand> commandTable = {
+                { "guildteleport", SEC_PLAYER, false, &HandleGuildTeleportCommand, "" }
+            };
+            return commandTable;
+        }
+
+        static bool HandleGuildTeleportCommand(ChatHandler* handler) {
+            Player* player = handler->GetSession()->GetPlayer();
+
+            if (!player)
+                return false;
+
+            if (!player->GetGuild()) {
+                ChatHandler(player->GetSession()).SendSysMessage("You must be in a guild to use this command.");
+                return true;
+            }
+
+            player->CastSpell(player, 100001, false);
+            return true;
+        }
+};
+
 void Addmod_guild_teleportScripts() {
     new GuildTeleportNPC();
     new GuildTeleportSpell();
+    new GuildTeleport_CommandScript();
     printf(">> Guild Teleport Module Loaded!\n");
 }
