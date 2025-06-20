@@ -44,7 +44,6 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 float z = fields[3].Get<float>();
                 float o = fields[4].Get<float>();
 
-
                 player->TeleportTo(map, x, y, z, o);
             }
 
@@ -78,7 +77,6 @@ class GuildTeleportNPC : public CreatureScript {
                     0, GOSSIP_ICON_INTERACT_1, 0, 2, 0);
             }
 
-
             player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
             return true;
         }
@@ -108,7 +106,6 @@ class GuildTeleportNPC : public CreatureScript {
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
                 float o = fields[4].Get<float>();
-
 
                 player->TeleportTo(mapId, x, y, z, o);
             }
