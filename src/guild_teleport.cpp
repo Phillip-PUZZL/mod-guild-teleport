@@ -79,7 +79,7 @@ class GuildTeleportNPC : public CreatureScript {
             }
 
 
-            player->SEND_GOSSIP_MENU(1, creature->GetGUID());
+            player->PlayerTalkClass->SendGossipMenu(1, creature->GetGUID());
             return true;
         }
 
