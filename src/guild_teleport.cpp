@@ -67,10 +67,10 @@ class GuildTeleportNPC : public CreatureScript {
                 return true;
             }
 
-            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to Guild Hall", GOSSIP_SENDER_MAIN, 1);
+            player->PlayerTalkClass->AddGossipItem(GOSSIP_ICON_CHAT, "Teleport to Guild Hall", GOSSIP_SENDER_MAIN, 1);
 
             if (guild->GetLeaderGUID() == player->GetGUID()) {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, "Set Guild Hall location", GOSSIP_SENDER_MAIN, 2);
+                player->PlayerTalkClass->AddGossipItem(GOSSIP_ICON_INTERACT_1, "Set Guild Hall location", GOSSIP_SENDER_MAIN, 2);
             }
 
             player->PlayerTalkClass->SendGossipMenu(90001, creature->GetGUID());
