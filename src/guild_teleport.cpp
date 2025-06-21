@@ -143,14 +143,12 @@ class GuildTeleportNPC : public CreatureScript {
 };
 
 class GuildTeleport_CommandScript : public CommandScript {
-    using namespace Acore::ChatCommands;
-    
     public:
         GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") { }
 
-        ChatCommandTable GetCommands() const override {
-            ChatCommandTable teleportTable = {
-                { "guildteleport", HandleGuildTeleportCommand, SEC_PLAYER, Console::No }
+        Acore::ChatCommands::ChatCommandTable GetCommands() const override {
+            Acore::ChatCommands::ChatCommandTable teleportTable = {
+                { "guildteleport", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
             };
             return teleportTable;
         }
