@@ -47,7 +47,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
             }
 
             void Register() override {
-                OnEffectHitTarget += SpellEffectFn(GuildTeleportSpell_SpellScript::HandleTeleport, EFFECT_0, SPELL_EFFECT_TELEPORT_UNITS);
+                OnEffectHitTarget += SpellEffectFn(GuildTeleportSpell_SpellScript::HandleTeleport, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
 
@@ -134,23 +134,23 @@ class GuildTeleport_CommandScript : public CommandScript {
 
         Acore::ChatCommands::ChatCommandTable GetCommands() const override {
             static Acore::ChatCommands::ChatCommandTable commandTable = {
-                { "guildteleport", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
+                { "guildteleport", Acore::ChatCommands::HandleChatCommand(&HandleGuildTeleportCommand), SEC_PLAYER, Acore::ChatCommands::Console::No }
             };
             return commandTable;
         }
 
-        static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string const&) {
+        static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string_view /*args*/) {
             Player* player = handler->GetSession()->GetPlayer();
 
             if (!player)
                 return false;
 
             if (!player->GetGuild()) {
-                ChatHandler(player->GetSession()).SendSysMessage("You must be in a guild to use this command.");
+                handler->SendSysMessage("You must be in a guild to use this command.");
                 return true;
             }
 
-            player->CastSpell(player, 100001, false); // show cast bar
+            player->CastSpell(player, 100001, false); // trigger the custom teleport spell
             return true;
         }
 };
