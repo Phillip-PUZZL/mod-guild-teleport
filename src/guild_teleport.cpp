@@ -57,7 +57,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 float z = fields[3].Get<float>();
                 float o = fields[4].Get<float>();
 
-                player->TeleportTo(map, x, y, z, o);
+                player->TeleportTo(map, x, y, z, 0.0f);
             }
 
             void Register() override {
@@ -118,7 +118,7 @@ class GuildTeleportNPC : public CreatureScript {
                 float z = fields[3].Get<float>();
                 float o = fields[4].Get<float>();
 
-                player->TeleportTo(mapId, x, y, z, o);
+                player->TeleportTo(mapId, x, y, z, 0.0f);
             } else if (action == 2) {
                 if (guild->GetLeaderGUID() != player->GetGUID()) {
                     ChatHandler(player->GetSession()).SendSysMessage("Only the guild leader can set the guild teleport location.");
