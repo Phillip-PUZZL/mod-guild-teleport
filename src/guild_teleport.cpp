@@ -67,10 +67,28 @@ class GuildTeleportNPC : public CreatureScript {
                 return true;
             }
 
-            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(GOSSIP_ICON_CHAT, "Teleport to Guild Hall", 1, 1);
+            player->PlayerTalkClass->ClearMenus();
+
+            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
+                GOSSIP_OPTION_GOSSIP,                 // menuItemId (can be 0 or a constant)
+                GOSSIP_ICON_CHAT,                     // icon
+                "Teleport to Guild Hall",             // visible option text
+                GOSSIP_SENDER_MAIN,                   // sender
+                1,                                    // action
+                "",                                   // no box message
+                0                                     // no box money
+            );
 
             if (guild->GetLeaderGUID() == player->GetGUID()) {
-                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(GOSSIP_ICON_INTERACT_1, "Set Guild Hall location", 1, 2);
+                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
+                    GOSSIP_OPTION_GOSSIP,
+                    GOSSIP_ICON_INTERACT_1,
+                    "Set Guild Hall location",
+                    GOSSIP_SENDER_MAIN,
+                    2,
+                    "",
+                    0
+                );
             }
 
             player->PlayerTalkClass->SendGossipMenu(90001, creature->GetGUID());
