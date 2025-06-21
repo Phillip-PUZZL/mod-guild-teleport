@@ -143,6 +143,8 @@ class GuildTeleportNPC : public CreatureScript {
 };
 
 class GuildTeleport_CommandScript : public CommandScript {
+    using namespace Acore::ChatCommands;
+    
     public:
         GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") { }
 
