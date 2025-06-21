@@ -10,6 +10,18 @@
 #include "SpellAuraEffects.h"
 #include <fmt/format.h>
 
+#define ICON_GOSSIP_BALOON 0
+#define ICON_GOSSIP_WING 2
+#define ICON_GOSSIP_BOOK 3
+#define ICON_GOSSIP_WHEEL1 4
+#define ICON_GOSSIP_WHEEL2 5
+#define ICON_GOSSIP_GOLD 6
+#define ICON_GOSSIP_BALOONDOTS 7
+#define ICON_GOSSIP_TABARD 8
+#define ICON_GOSSIP_XSWORDS 9
+
+#define GOSSIP_COUNT_MAX 10
+
 class GuildTeleportSpell : public SpellScriptLoader {
     public:
         GuildTeleportSpell() : SpellScriptLoader("GuildTeleportSpell") { }
@@ -69,26 +81,10 @@ class GuildTeleportNPC : public CreatureScript {
 
             player->PlayerTalkClass->ClearMenus();
 
-            player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                GOSSIP_OPTION_GOSSIP,                 // menuItemId (can be 0 or a constant)
-                GOSSIP_ICON_CHAT,                     // icon
-                "Teleport to Guild Hall",             // visible option text
-                GOSSIP_SENDER_MAIN,                   // sender
-                1,                                    // action
-                "",                                   // no box message
-                0                                     // no box money
-            );
+            AddGossipItemFor(player, ICON_GOSSIP_BALOON, "Teleport to Guild Hall", GOSSIP_SENDER_MAIN, 0);
 
             if (guild->GetLeaderGUID() == player->GetGUID()) {
-                player->PlayerTalkClass->GetGossipMenu().AddMenuItem(
-                    GOSSIP_OPTION_GOSSIP,
-                    GOSSIP_ICON_INTERACT_1,
-                    "Set Guild Hall location",
-                    GOSSIP_SENDER_MAIN,
-                    2,
-                    "",
-                    0
-                );
+                AddGossipItemFor(player, ICON_GOSSIP_WHEEL1, "Set Guild Hall location", GOSSIP_SENDER_MAIN, 0);
             }
 
             player->PlayerTalkClass->SendGossipMenu(90001, creature->GetGUID());
