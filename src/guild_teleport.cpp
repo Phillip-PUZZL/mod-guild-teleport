@@ -8,6 +8,8 @@
 #include "Chat.h"
 #include "SpellScript.h"
 #include "SpellAuraEffects.h"
+#include "ScriptedGossip.h"
+#include "World.h"
 #include <fmt/format.h>
 
 #define ICON_GOSSIP_BALOON 0
