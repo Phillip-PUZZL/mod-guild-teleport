@@ -140,41 +140,8 @@ class GuildTeleportNPC : public CreatureScript {
         }
 };
 
-class GuildTeleport_CommandScript : public CommandScript {
-    public:
-        GuildTeleport_CommandScript() : CommandScript("GuildTeleport_CommandScript") { }
-
-        Acore::ChatCommands::ChatCommandTable GetCommands() const override {
-            static Acore::ChatCommands::ChatCommandTable teleportTable = {
-                { "", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
-            };
-
-            static Acore::ChatCommands::ChatCommandTable commandTable = {
-                { "guildteleport", teleportTable },
-            };
-
-            return commandTable;
-        }
-
-        static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string_view /*args*/) {
-            Player* player = handler->GetSession()->GetPlayer();
-
-            if (!player)
-                return false;
-
-            if (!player->GetGuild()) {
-                handler->SendSysMessage("You must be in a guild to use this command.");
-                return true;
-            }
-
-            player->CastSpell(player, 100001, false); // trigger the custom teleport spell
-            return true;
-        }
-};
-
-void Addmod_guild_teleportScripts() {
+void AddSC_guild_teleport() {
     new GuildTeleportNPC();
     new GuildTeleportSpell();
-    new GuildTeleport_CommandScript();
     printf(">> Guild Teleport Module Loaded!\n");
 }
