@@ -72,7 +72,7 @@ REPLACE INTO spell (
   EffectDamageMultiplier1, EffectDamageMultiplier2, EffectDamageMultiplier3,
   MinimumFactionId, MinimumReputation, RequiredAuraVision, TotemCategory1, TotemCategory2, AreaGroupID, SchoolMask, RuneCostID, SpellMissileID, PowerDisplayId, EffectBonusMultiplier1, EffectBonusMultiplier2, EffectBonusMultiplier3, SpellDescriptionVariableID, SpellDifficultyID
 ) VALUES (
-  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
+  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 15, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   -1, 0, 0, 77, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   3274, 0, 2856, 0, 0,
@@ -140,7 +140,7 @@ REPLACE INTO spell_dbc (
   EffectBonusMultiplier_1, EffectBonusMultiplier_2, EffectBonusMultiplier_3,
   SpellDescriptionVariableID, SpellDifficultyID
 ) VALUES (
-  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
+  100001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9000, 0, 0, 15, 0, 0, 0, 100, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 7, 1.5, 0, 1,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   -1, 0, 0, 77, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   3274, 0, 2856, 0, 0,

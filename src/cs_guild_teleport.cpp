@@ -23,7 +23,7 @@ class guild_teleport_commandscript : public CommandScript {
             return commandTable;
         }
 
-        static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string_view /*args*/) {
+        static bool HandleGuildTeleportCommand(ChatHandler* handler) {
             Player* player = handler->GetSession()->GetPlayer();
 
             if (!player)
