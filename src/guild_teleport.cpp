@@ -148,8 +148,9 @@ class GuildTeleport_CommandScript : public CommandScript {
 
         Acore::ChatCommands::ChatCommandTable GetCommands() const override {
             Acore::ChatCommands::ChatCommandTable teleportTable = {
-                { "guildteleport", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
+                { "", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
             };
+
             return teleportTable;
         }
 
