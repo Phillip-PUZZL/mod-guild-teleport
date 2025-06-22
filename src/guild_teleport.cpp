@@ -43,7 +43,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 }
 
                 QueryResult result = WorldDatabase.Query(fmt::format(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
+                    "SELECT map, x, y, z FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Your guild has no teleport location set.");
@@ -55,7 +55,6 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 float x = fields[1].Get<float>();
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
-                float o = fields[4].Get<float>();
 
                 player->TeleportTo(map, x, y, z, 0.0f);
             }
@@ -104,7 +103,7 @@ class GuildTeleportNPC : public CreatureScript {
 
             if (action == 1) {
                 QueryResult result = WorldDatabase.Query(fmt::format(
-                    "SELECT map, x, y, z, o FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
+                    "SELECT map, x, y, z FROM guild_teleport_locations WHERE guild_id = {}", guild->GetId()));
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Teleport location not configured for your guild.");
@@ -116,7 +115,6 @@ class GuildTeleportNPC : public CreatureScript {
                 float x = fields[1].Get<float>();
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
-                float o = fields[4].Get<float>();
 
                 player->TeleportTo(mapId, x, y, z, 0.0f);
             } else if (action == 2) {
@@ -151,7 +149,11 @@ class GuildTeleport_CommandScript : public CommandScript {
                 { "", HandleGuildTeleportCommand, SEC_PLAYER, Acore::ChatCommands::Console::No }
             };
 
-            return teleportTable;
+            static ChatCommandTable commandTable = {
+                { "guildteleport", teleportTable },
+            };
+
+            return commandTable;
         }
 
         static bool HandleGuildTeleportCommand(ChatHandler* handler, std::string_view /*args*/) {
