@@ -9,7 +9,7 @@ using namespace Acore::ChatCommands;
 
 class guild_teleport_commandscript : public CommandScript {
     public:
-        guildteleport_commandscript() : CommandScript("guild_teleport_commandscript") { }
+        guild_teleport_commandscript() : CommandScript("guild_teleport_commandscript") { }
 
         ChatCommandTable GetCommands() const override {
             static ChatCommandTable teleportTable = {
