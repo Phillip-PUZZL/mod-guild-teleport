@@ -39,6 +39,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 Guild* guild = player->GetGuild();
                 if (!guild) {
                     ChatHandler(player->GetSession()).SendSysMessage("You are not in a guild.");
+                    player->RemoveSpellCooldown(100001, true);
                     return;
                 }
 
@@ -47,6 +48,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
 
                 if (!result) {
                     ChatHandler(player->GetSession()).SendSysMessage("Your guild has no teleport location set.");
+                    player->RemoveSpellCooldown(100001, true);
                     return;
                 }
 
