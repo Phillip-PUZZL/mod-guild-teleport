@@ -59,7 +59,7 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
 
-                if (!MapManager::IsValidMapCoord(map, x, y, z))
+                if (!MapMgr::IsValidMapCoord(map, x, y, z))
                     return;
 
                 player->TeleportTo(map, x, y, z, 0.0f);
@@ -122,7 +122,7 @@ class GuildTeleportNPC : public CreatureScript {
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
 
-                if (!MapManager::IsValidMapCoord(map, x, y, z))
+                if (!MapMgr::IsValidMapCoord(map, x, y, z))
                     return true;
 
                 player->TeleportTo(mapId, x, y, z, 0.0f);
