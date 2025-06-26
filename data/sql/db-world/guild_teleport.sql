@@ -48,9 +48,6 @@ VALUES (70010, 0, 9590, 1.0, 1.0, 0);
 
 REPLACE INTO spell_script_names (spell_id, ScriptName) VALUES (100001, 'GuildTeleportSpell');
 
-REPLACE INTO spellcasttimes_dbc (ID, Base, PerLevel, Minimum) VALUES (9000, 10000, 0, 10000);
-REPLACE INTO spellcasttimes (ID, CastingTime, CastingTimePerLevel, MinimumCastingTime) VALUES (9000, 10000, 0, 10000);
-
 REPLACE INTO spell (
     ID, Category, Dispel, Mechanic, Attributes, AttributesEx, AttributesEx2, AttributesEx3, AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7, Stances, Unknown1, StancesNot, Unknown2, Targets, TargetCreatureType, RequiresSpellFocus, FacingCasterFlags, CasterAuraState, TargetAuraState, CasterAuraStateNot, TargetAuraStateNot, CasterAuraSpell, TargetAuraSpell, ExcludeCasterAuraSpell, ExcludeTargetAuraSpell, CastingTimeIndex, RecoveryTime, CategoryRecoveryTime, InterruptFlags, AuraInterruptFlags, ChannelInterruptFlags, ProcFlags, ProcChance, ProcCharges, MaximumLevel, BaseLevel, SpellLevel, DurationIndex, PowerType, ManaCost, ManaCostPerLevel, ManaPerSecond, ManaPerSecondPerLevel, RangeIndex, Speed, ModalNextSpell, StackAmount,
     Totem1, Totem2, Reagent1, Reagent2, Reagent3, Reagent4, Reagent5, Reagent6, Reagent7, Reagent8, ReagentCount1, ReagentCount2, ReagentCount3, ReagentCount4, ReagentCount5, ReagentCount6, ReagentCount7, ReagentCount8,
@@ -68,29 +65,29 @@ REPLACE INTO spell (
     EffectDamageMultiplier1, EffectDamageMultiplier2, EffectDamageMultiplier3,
     MinimumFactionId, MinimumReputation, RequiredAuraVision, TotemCategory1, TotemCategory2, AreaGroupID, SchoolMask, RuneCostID, SpellMissileID, PowerDisplayId, EffectBonusMultiplier1, EffectBonusMultiplier2, EffectBonusMultiplier3, SpellDescriptionVariableID, SpellDifficultyID
 ) VALUES (
-     100001,0,0,0,134283264,1024,0,536870912,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,7,0,600000,31,
-     0,0,0,101,0,0,0,0,0,0,0,0,
-     0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,0,-1,
-     0,0,77,5,0,1,0,0,0,0,
-     0,-1,0,0,0,0,0,1,1,
-     0,9,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,220,
-     0,2856,0,0,'Guild Teleport',0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,16712190,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,0,0,0,
-     16712188,'Teleports you to the guild hall.',0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,
-     0,16712190,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,16712188,
-     0,5000,1500,0,0,0,0,0,0,
-     0,0,0,1,1,1,0,0,0,
-     0,0,0,1,0,0,0,0,1,0,0,0
+    100001,0,0,0,134283264,1024,0,536870912,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,7,0,600000,31,
+    0,0,0,101,0,0,0,0,0,0,0,0,
+    0,0,1,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,-1,
+    0,0,77,0,0,1,0,0,0,0,
+    0,-1,0,0,0,0,0,1,1,
+    0,9,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,220,
+    0,2856,0,0,'Guild Teleport',0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,16712190,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,
+    16712188,'Teleports you to the guild hall.',0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,16712190,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,16712188,
+    0,5000,1500,0,0,0,0,0,0,
+    0,0,0,1,1,1,0,0,0,
+    0,0,0,1,0,0,0,0,1,0,0,0
 );
 
 REPLACE INTO spell_dbc (
