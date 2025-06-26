@@ -10,7 +10,7 @@
 #include "SpellAuraEffects.h"
 #include "ScriptedGossip.h"
 #include "World.h"
-#include "MapManager.h"
+#include "MapMgr.h"
 #include <fmt/format.h>
 
 #define ICON_GOSSIP_BALOON 0
