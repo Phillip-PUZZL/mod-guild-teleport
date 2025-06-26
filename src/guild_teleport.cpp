@@ -54,15 +54,15 @@ class GuildTeleportSpell : public SpellScriptLoader {
                 }
 
                 Field* fields = result->Fetch();
-                uint32 map = fields[0].Get<uint32>();
+                uint32 mapId = fields[0].Get<uint32>();
                 float x = fields[1].Get<float>();
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
 
-                if (!MapMgr::IsValidMapCoord(map, x, y, z))
+                if (!MapMgr::IsValidMapCoord(mapId, x, y, z))
                     return;
 
-                player->TeleportTo(map, x, y, z, 0.0f);
+                player->TeleportTo(mapId, x, y, z, 0.0f);
             }
 
             void Register() override {
@@ -122,7 +122,7 @@ class GuildTeleportNPC : public CreatureScript {
                 float y = fields[2].Get<float>();
                 float z = fields[3].Get<float>();
 
-                if (!MapMgr::IsValidMapCoord(map, x, y, z))
+                if (!MapMgr::IsValidMapCoord(mapId, x, y, z))
                     return true;
 
                 player->TeleportTo(mapId, x, y, z, 0.0f);
